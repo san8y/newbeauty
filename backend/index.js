@@ -19,8 +19,11 @@ app.use(
       "https://www.beautycabin.suri",
     ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    credentials: true,
   })
 );
+
+
 
 app.use(express.json());
 
