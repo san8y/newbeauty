@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000";
+const API_URL = "https://my-project-m156.onrender.com";
 
 export const createAppointment = async (data) => {
   const res = await axios.post(

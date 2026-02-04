@@ -10,24 +10,37 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+/* 🔐 CORS (JWT Header Based) */
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://my-project-three-ochre.vercel.app",
+      "https://www.beautycabin.suri",
+    ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  })
+);
+
 app.use(express.json());
 
-// MongoDB
+/* ✅ MongoDB */
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.error("❌ Mongo Error:", err));
 
-// Health check
+/* 🩺 Health Check */
 app.get("/db-check", (req, res) => {
-  res.json({ ok: true });
+  res.json({ ok: true, message: "Backend is live" });
 });
 
-// Routes
+/* 📌 Routes */
 app.use("/auth", authRoutes);
 app.use("/appointments", appointmentRoutes);
 
-app.listen(5000, () => {
-  console.log("🚀 Server running on port 5000");
+/* 🚀 Start Server (Render Compatible) */
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });

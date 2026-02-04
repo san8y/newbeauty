@@ -17,7 +17,7 @@ export default function Location() {
             Visit Our Salon
           </h2>
           <p className="mt-4 text-[#7C2D12] text-lg">
-            We’re located in the heart of Butibori, Nagpur 🌸
+            We’re located in Taman Perling, Johor Bahru 🌸
           </p>
         </motion.div>
 
@@ -39,13 +39,15 @@ export default function Location() {
             </div>
 
             <p className="text-[#7C2D12] text-lg leading-relaxed">
-              Butibori Industrial Area,<br />
-              Nagpur, Maharashtra,<br />
-              India – 441122
+              229, Jalan Simbang,<br />
+              Taman Perling,<br />
+              81200 Johor Bahru,<br />
+              Johor Darul Ta'zim,<br />
+              Malaysia
             </p>
 
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Butibori+Nagpur"
+              href="https://www.google.com/maps/search/?api=1&query=229+Jalan+Simbang+Taman+Perling+Johor+Bahru"
               target="_blank"
               rel="noreferrer"
               className="inline-block mt-6 px-6 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-pink-400 text-white font-semibold shadow-lg hover:shadow-xl transition"
@@ -62,8 +64,8 @@ export default function Location() {
             className="w-full h-[350px] rounded-3xl overflow-hidden shadow-2xl border border-pink-100"
           >
             <iframe
-              title="Butibori Nagpur Location"
-              src="https://www.google.com/maps?q=Butibori,Nagpur&output=embed"
+              title="Taman Perling Johor Bahru Location"
+              src="https://www.google.com/maps?q=229+Jalan+Simbang+Taman+Perling+Johor+Bahru&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
