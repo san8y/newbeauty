@@ -22,7 +22,7 @@ export default function Book() {
     setLoading(true);
 
     try {
-      await axios.post("http://localhost:5000/appointments", form);
+      await axios.post("https://beautycabin-2.onrender.com", form);
 
       toast.success("Appointment booked successfully 🌸");
 
