@@ -18,7 +18,8 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   "http://localhost:5175",   // 👈 ADD THIS
-  "https://beautycabin-1.onrender.com"
+  "https://beautycabin-2.onrender.com" // your frontend
+  
 ];
 
 app.use(
