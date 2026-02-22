@@ -1,10 +1,9 @@
-import { useState } from "react";
+give me the full code of changes with comment import { useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
 import toast from "react-hot-toast";
-import api from "../api"; // ✅ Use your axios instance with baseURL from VITE_API_URL
 
 export default function Book() {
-  // Form state
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -15,23 +14,18 @@ export default function Book() {
 
   const [loading, setLoading] = useState(false);
 
-  // Handle input changes
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      // ✅ Use the axios instance `api` instead of hardcoding the URL
-      // This ensures it will work with Render environment variable
-      await api.post("/appointments", form);
+     await axios.post("https://beautycabin-1.onrender.com/appointments", form);
 
       toast.success("Appointment booked successfully 🌸");
 
-      // Reset form after submission
       setForm({
         name: "",
         phone: "",
@@ -40,7 +34,6 @@ export default function Book() {
         service: "",
       });
     } catch (err) {
-      // Show error from backend if any
       toast.error(err.response?.data?.error || "Booking failed ❌");
     } finally {
       setLoading(false);
@@ -67,7 +60,6 @@ export default function Book() {
           Pamper yourself with our beauty services 🌸
         </p>
 
-        {/* Input fields */}
         {["name", "phone", "date", "time"].map((f) => (
           <motion.input
             key={f}
@@ -90,7 +82,6 @@ export default function Book() {
           />
         ))}
 
-        {/* Service selection */}
         <motion.select
           name="service"
           value={form.service}
@@ -108,7 +99,6 @@ export default function Book() {
           <option>Henna Arts</option>
         </motion.select>
 
-        {/* Submit button */}
         <motion.button
           type="submit"
           disabled={loading}
