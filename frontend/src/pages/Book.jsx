@@ -1,4 +1,4 @@
-give me the full code of changes with comment import { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -22,7 +22,11 @@ export default function Book() {
     setLoading(true);
 
     try {
+
+      
      await axios.post("https://beautycabin-1.onrender.com/appointments", form);
+
+
 
       toast.success("Appointment booked successfully 🌸");
 
