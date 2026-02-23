@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const path = require("path"); // ✅ needed for static file serving
+const path = require("path");
 
 const authRoutes = require("./routes/auth.routes");
 const appointmentRoutes = require("./routes/appointment.routes");
@@ -10,11 +10,8 @@ const appointmentRoutes = require("./routes/appointment.routes");
 dotenv.config();
 
 const app = express();
-
-/* ✅ TRUST PROXY */
 app.set("trust proxy", 1);
 
-/* 🔐 CORS */
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
@@ -25,7 +22,7 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin) return callback(null, true); // allow Postman/mobile
+      if (!origin) return callback(null, true);
       if (allowedOrigins.includes(origin)) return callback(null, true);
       else return callback(new Error("Not allowed by CORS"));
     },
@@ -35,31 +32,24 @@ app.use(
   })
 );
 
-/* 📦 Middleware */
 app.use(express.json());
 
-/* 🩺 Health Check */
-app.get("/", (req, res) => {
-  res.json({ status: "Backend running 🚀" });
-});
-app.get("/db-check", (req, res) => {
-  res.json({ ok: true, message: "Backend is live" });
-});
+app.get("/", (req, res) => res.json({ status: "Backend running 🚀" }));
+app.get("/db-check", (req, res) => res.json({ ok: true, message: "Backend is live" }));
 
-/* 📌 API Routes */
+// API Routes
 app.use("/auth", authRoutes);
 app.use("/appointments", appointmentRoutes);
 
-/* 📂 Serve React Frontend */
-// Serve static files from frontend build
+// Serve React frontend
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-// Catch-all route to serve React index.html for client-side routing
-app.get("*", (req, res) => {
+// Catch-all route (Render compatible)
+app.get("/:any(*)", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
 });
 
-/* ✅ MongoDB + Start Server */
+// MongoDB + Server
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
