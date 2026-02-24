@@ -1,1 +1,10 @@
-/*    /index.html   200
+services:
+  - type: web
+    name: newbeauty-frontend
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
